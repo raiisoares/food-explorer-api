@@ -1,10 +1,13 @@
 const AppError = require("../utils/AppError");
+const UserRepository = require("../repositories/UserRepository");
+const UserCreateService = require("../services/UserCreateService");
 class UsersController {
 
-     create(request, response) {
+    async create(request, response) {
         const { name, email, password } = request.body;
-
-        if(!name) throw new AppError("nome obrigatório");
+        const userRepository = new UserRepository();
+        const userCreateService = new UserCreateService(userRepository);
+        await userCreateService.execute({ name, email, password });
 
         response.status(201).json({ name })
     }
