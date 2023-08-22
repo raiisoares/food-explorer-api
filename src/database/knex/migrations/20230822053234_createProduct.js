@@ -4,11 +4,11 @@ exports.up = knex => knex.schema.createTable("products", table => {
     table.text("type");
     table.text("description");
     table.float("price");
-    table.text("avatar").default(null);
+    table.text("image").default(null);
 
     table.timestamp("created_at").default(knex.fn.now());
     table.timestamp("updated_at").default(knex.fn.now());
 
 });
 
-exports.down = knex => knex.schema.dropTable("notes");
+exports.down = knex => knex.schema.dropTable("products");
