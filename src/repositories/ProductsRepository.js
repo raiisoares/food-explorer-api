@@ -1,4 +1,5 @@
 const knex = require("../database/knex");
+const AppError = require("../utils/AppError");
 
 class ProductsRepository {
 
@@ -17,10 +18,21 @@ class ProductsRepository {
                 product_id
             }
         });
-        
+
         await knex("ingredients").insert(ingredientsInsert);
 
     }
+
+
+    async delete(id) {
+        
+        const [productToBeRemoved] = await knex("products").where({ id });
+        if (!productToBeRemoved) throw new AppError("Produto não está cadastrado!");
+        
+        await knex("products").where({ id }).delete();
+        return productToBeRemoved;
+    }
+
 
 }
 

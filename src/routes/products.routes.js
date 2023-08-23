@@ -4,5 +4,6 @@ const productsController = new ProductsController();
 const productsRouter = Router();
 
 productsRouter.post("/", productsController.create);
+productsRouter.delete("/:id", productsController.delete);
 
 module.exports = productsRouter;
