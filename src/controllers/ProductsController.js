@@ -23,6 +23,16 @@ class ProductsController {
         return response.status(200).json();
     }
 
+
+    async update(request, response) {
+
+        const { name, type, description, price, ingredients } = request.body;
+
+        const productRepository = new ProductsRepository();
+
+        return response.status(200).json();
+    }
+
 }
 
 module.exports = ProductsController;
