@@ -3,6 +3,7 @@ const ProductCreateService = require("../services/ProductCreateService");
 const ProductDeleteService = require("../services/ProductDeleteService");
 const ProductUpdateService = require("../services/ProductUpdateService");
 const ProductShowService = require("../services/ProductShowService");
+const ProductIndexService = require("../services/ProductIndexService");
 
 class ProductsController {
 
@@ -40,7 +41,7 @@ class ProductsController {
 
         await productUpdateService.execute({ id }, { name, type, description, price, ingredients });
 
-        return response.status(200).json("deu bom");
+        return response.status(200).json();
 
     }
 
@@ -53,6 +54,22 @@ class ProductsController {
         const productToBeShown = await productShowService.execute(id);
 
         return response.status(200).json(productToBeShown);
+
+    }
+
+    async index(request, response) {
+        try {
+            const { name } = request.body;
+            const productRepository = new ProductsRepository();
+            const productIndexService = new ProductIndexService(productRepository);
+
+            const productsToBeShown = await productIndexService.execute(name);
+
+
+            return response.status(200).json(productsToBeShown);
+        } catch (error) {
+            console.log(error)
+        }
 
 
     }

@@ -75,6 +75,13 @@ class ProductsRepository {
         return productToBeShown;
     }
 
+    async index(name) {
+
+        const products = await knex("products").select(["*"]).whereLike("name", `%${name}%`).groupBy("products.name").orderBy("name");
+
+        return products;
+    }
+
 
 }
 
