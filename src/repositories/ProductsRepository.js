@@ -77,7 +77,9 @@ class ProductsRepository {
 
     async index(name) {
 
-        const products = await knex("products").select(["*"]).whereLike("name", `%${name}%`).groupBy("products.name").orderBy("name");
+        const ingredients = await knex("ingredients").select(["product_id"]).whereLike("name", `%${name}%`);
+
+        const products = await knex("products").select(["*"]).whereLike("name", `%${name}%`).orWhereIn('id', ingredients.map(ingredient => ingredient.product_id)).groupBy("products.name").orderBy("name");
 
         return products;
     }
