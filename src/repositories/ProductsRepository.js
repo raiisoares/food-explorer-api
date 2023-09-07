@@ -78,13 +78,13 @@ class ProductsRepository {
     async index(name) {
 
         if (name === "refeição" || name === "sobremesa" || name === "bebida") {
-            const products = await knex("products").select(["*"]).where("type", `${name}`).groupBy("products.name").orderBy("name");
+            const products = await knex("products").select(["products.name", "products.image", "products.description", "products.price"]).where("type", `${name}`).groupBy("products.name").orderBy("name");
             return products;
         } else {
 
             const ingredients = await knex("ingredients").select(["product_id"]).whereLike("name", `%${name}%`);
 
-            const products = await knex("products").select(["*"]).whereLike("name", `%${name}%`).orWhereIn('id', ingredients.map(ingredient => ingredient.product_id)).groupBy("products.name").orderBy("name");
+            const products = await knex("products").select(["products.name", "products.image", "products.description", "products.price"]).whereLike("name", `%${name}%`).orWhereIn('id', ingredients.map(ingredient => ingredient.product_id)).groupBy("products.name").orderBy("name");
 
             return products;
         }
