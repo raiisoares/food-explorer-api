@@ -67,6 +67,14 @@ class ProductsRepository {
         return productToBeUpdated;
     }
 
+    async show(id) {
+        const [product] = await knex("products").where({ id });
+        const [ingredients] = await knex("ingredients").where({ product_id: id }).orderBy("name");
+
+        const productToBeShown = ({ ...product, ingredients });
+        return productToBeShown;
+    }
+
 
 }
 
