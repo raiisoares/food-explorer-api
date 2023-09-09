@@ -58,20 +58,15 @@ class ProductsController {
     }
 
     async index(request, response) {
-        try {
-            const { name } = request.body;
-            const productRepository = new ProductsRepository();
-            const productIndexService = new ProductIndexService(productRepository);
 
-            const productsToBeShown = await productIndexService.execute(name);
+        const { name } = request.body;
+        const productRepository = new ProductsRepository();
+        const productIndexService = new ProductIndexService(productRepository);
 
-
-            return response.status(200).json(productsToBeShown);
-        } catch (error) {
-            console.log(error)
-        }
+        const productsToBeShown = await productIndexService.execute(name);
 
 
+        return response.status(200).json(productsToBeShown);
     }
 
 }
