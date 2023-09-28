@@ -1,0 +1,34 @@
+@baseUrl = http://localhost:3333
+@resource = products
+
+# @name create-product
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+Authorization: Cookie token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2OTU4ODg2NzgsImV4cCI6MTY5NTk3NTA3OCwic3ViIjoiMiJ9.t17AIRNiPTVMqmYlaSGDuMj11pKqMNd24MyHnOvSocU
+
+{
+  "name": "teste",
+  "type": "refeição",
+  "description": "teste refeição",
+  "price": 10.00,
+  "ingredients": ["ing01", "ing02"]
+}
+
+###
+
+# @name upload-image
+PATCH {{baseUrl}}/{{resource}}/2/image
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="test.png"
+Content-Type: image/png
+
+< ./test.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+# @name get-products
+GET {{baseUrl}}/{{resource}}
+
+###

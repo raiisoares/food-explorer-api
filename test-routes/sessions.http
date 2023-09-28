@@ -1,0 +1,14 @@
+@baseUrl = http://localhost:3333
+@resource = sessions
+
+# @name create-session
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{
+  "email": "teste@email.com",
+  "password": "123"
+}
+
+###
+
