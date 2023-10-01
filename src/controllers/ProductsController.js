@@ -59,7 +59,7 @@ class ProductsController {
 
     async index(request, response) {
 
-        const { name } = request.body;
+        const { name } = request.query;
         const productRepository = new ProductsRepository();
         const productIndexService = new ProductIndexService(productRepository);
 
