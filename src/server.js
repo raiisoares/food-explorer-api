@@ -5,6 +5,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const routes = require("./routes");
+const uploadConfig = require("./configs/upload")
 
 const app = express();
 const PORT = 3333;
@@ -17,6 +18,7 @@ app.use(
     credentials: true,
   })
 );
+app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
 
 app.use(routes);
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
