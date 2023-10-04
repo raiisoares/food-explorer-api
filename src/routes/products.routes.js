@@ -9,7 +9,7 @@ const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 const productsRouter = Router();
 const upload = multer(uploadConfig.MULTER);
 
-// productsRouter.use(ensureAuthenticated);
+productsRouter.use(ensureAuthenticated);
 
 productsRouter.post("/", productsController.create);
 productsRouter.delete("/:id", productsController.delete);
