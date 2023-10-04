@@ -6,6 +6,7 @@ class ProductImageController {
   async update(request, response) {
     const { id } = request.params
     const imageFileName = request.file.filename;
+
     const discStorage = new DiscStorage();
     const [product] = await knex("products").where({ id });
 
@@ -14,8 +15,9 @@ class ProductImageController {
 
     const filename = await discStorage.saveFile(imageFileName);
     product.image = filename;
+
     const [updatedProduct] = await knex("products")
-      .update(product)
+      .update({ image: product.image })
       .where({ id })
       .returning("*");
 

@@ -6,69 +6,68 @@ const ProductShowService = require("../services/ProductShowService");
 const ProductIndexService = require("../services/ProductIndexService");
 
 class ProductsController {
+  async create(request, response) {
+    const { name, type, description, price, ingredients } = request.body;
 
-    async create(request, response) {
-        const { name, type, description, price, ingredients } = request.body;
+    const productRepository = new ProductsRepository();
+    const productCreateService = new ProductCreateService(productRepository);
 
-        const productRepository = new ProductsRepository();
-        const productCreateService = new ProductCreateService(productRepository);
+    const createdProduct = await productCreateService.execute({
+      name,
+      type,
+      description,
+      price,
+      ingredients,
+    });
+   
+    return response.status(200).json(createdProduct);
+  }
 
-        await productCreateService.execute({ name, type, description, price, ingredients });
+  async delete(request, response) {
+    const { id } = request.params;
 
-        return response.status(200).json({ name, type, description, price, ingredients });
-    }
+    const productRepository = new ProductsRepository();
+    const productDeleteService = new ProductDeleteService(productRepository);
 
-    async delete(request, response) {
+    await productDeleteService.execute(id);
 
-        const { id } = request.params;
+    return response.status(200).json();
+  }
 
-        const productRepository = new ProductsRepository();
-        const productDeleteService = new ProductDeleteService(productRepository);
+  async update(request, response) {
+    const { name, type, description, price, ingredients } = request.body;
+    const { id } = request.params;
 
-        await productDeleteService.execute(id);
+    const productRepository = new ProductsRepository();
+    const productUpdateService = new ProductUpdateService(productRepository);
 
-        return response.status(200).json();
-    }
+    await productUpdateService.execute(
+      { id },
+      { name, type, description, price, ingredients }
+    );
 
+    return response.status(200).json();
+  }
 
-    async update(request, response) {
+  async show(request, response) {
+    const { id } = request.params;
+    const productRepository = new ProductsRepository();
+    const productShowService = new ProductShowService(productRepository);
 
-        const { name, type, description, price, ingredients } = request.body;
-        const { id } = request.params;
+    const productToBeShown = await productShowService.execute(id);
 
-        const productRepository = new ProductsRepository();
-        const productUpdateService = new ProductUpdateService(productRepository);
+    return response.status(200).json(productToBeShown);
+  }
 
-        await productUpdateService.execute({ id }, { name, type, description, price, ingredients });
+  async index(request, response) {
+    const { name } = request.query;
+    const productRepository = new ProductsRepository();
+    const productIndexService = new ProductIndexService(productRepository);
 
-        return response.status(200).json();
+    const productsToBeShown = await productIndexService.execute(name);
 
-    }
-
-    async show(request, response) {
-
-        const { id } = request.params;
-        const productRepository = new ProductsRepository();
-        const productShowService = new ProductShowService(productRepository);
-
-        const productToBeShown = await productShowService.execute(id);
-
-        return response.status(200).json(productToBeShown);
-
-    }
-
-    async index(request, response) {
-
-        const { name } = request.query;
-        const productRepository = new ProductsRepository();
-        const productIndexService = new ProductIndexService(productRepository);
-
-        const productsToBeShown = await productIndexService.execute(name);
-
-
-        return response.status(200).json(productsToBeShown);
-    }
-
+    return response.status(200).json(productsToBeShown);
+  }
 }
 
 module.exports = ProductsController;

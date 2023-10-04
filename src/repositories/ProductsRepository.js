@@ -15,14 +15,16 @@ class ProductsRepository {
       price,
     });
 
-    const ingredientsInsert = ingredients.map((name) => {
+    const ingredientsInsert = ingredients.map((ingredientName) => {
       return {
-        name,
+        name: ingredientName,
         product_id,
       };
     });
 
     await knex("ingredients").insert(ingredientsInsert);
+
+    return product_id;
   }
 
   async delete(id) {
