@@ -6,10 +6,13 @@ const productsController = new ProductsController();
 const ProductImageController = require("../controllers/ProductImageController");
 const productImageController = new ProductImageController();
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
+const verifyUserAuthorization = require("../middlewares/verifyUserAuthorization");
 const productsRouter = Router();
 const upload = multer(uploadConfig.MULTER);
 
 productsRouter.use(ensureAuthenticated);
+productsRouter.use(verifyUserAuthorization(["admin", "customer"]));
+
 
 productsRouter.post("/", productsController.create);
 productsRouter.delete("/:id", productsController.delete);
