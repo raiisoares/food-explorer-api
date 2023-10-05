@@ -41,12 +41,12 @@ class ProductsController {
     const productRepository = new ProductsRepository();
     const productUpdateService = new ProductUpdateService(productRepository);
 
-    await productUpdateService.execute(
+    const productUpdated = await productUpdateService.execute(
       { id },
       { name, type, description, price, ingredients }
     );
 
-    return response.status(200).json();
+    return response.status(200).json(productUpdated);
   }
 
   async show(request, response) {
