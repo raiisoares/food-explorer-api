@@ -26,7 +26,7 @@ Bem-vindo ao Food Explorer API, um projeto desenvolvido no programa Explorer da 
 
 - **Express:** Framework web para Node.js, facilitando o desenvolvimento de APIs.
 
-- - **pm2:** Gerenciador de processos para Node.js.
+- **pm2:** Gerenciador de processos para Node.js.
 
 - **SQLite:** Banco de dados leve e eficiente para armazenamento de dados.
 
