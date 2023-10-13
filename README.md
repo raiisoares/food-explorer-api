@@ -47,6 +47,11 @@ Bem-vindo ao Food Explorer API, um projeto desenvolvido no programa Explorer da 
 5. **Executar Testes:**
 ``npm run test``
 
+## Dados para logIn como admin
+- **nome:** admin
+- **email:** admin@email.com
+- **senha:** 123456
+
 ## Funcionalidades a serem Adicionadas
 
 1. **Sistema de Favoritos:** Usuários podem marcar alimentos como favoritos para fácil acesso posterior.
