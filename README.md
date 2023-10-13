@@ -2,6 +2,8 @@
 
 Bem-vindo ao Food Explorer API, um projeto desenvolvido no programa Explorer da Rocketseat. Esta API é dedicada à exploração e gerenciamento de informações de um restaurante. Aqui estão os principais recursos e tecnologias envolvidas no projeto:
 
+**link para consumir a api:** https://food-explorer-api-hxyl.onrender.com
+
 ## Funcionalidades
 
 1. **Adicionar Pratos:** Adicione novos pratos à base de dados, incluindo detalhes como nome, ingredientes, imagens, descrição e categoria.
