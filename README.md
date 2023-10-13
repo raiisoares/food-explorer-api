@@ -22,9 +22,11 @@ Bem-vindo ao Food Explorer API, um projeto desenvolvido no programa Explorer da 
 
 - **Node.js:** Ambiente de execução JavaScript do lado do servidor.
 
+- **JavaScript:** Linguagem de programação principal para a lógica do aplicativo.
+
 - **Express:** Framework web para Node.js, facilitando o desenvolvimento de APIs.
 
-- **JavaScript:** Linguagem de programação principal para a lógica do aplicativo.
+- - **pm2:** Gerenciador de processos para Node.js.
 
 - **SQLite:** Banco de dados leve e eficiente para armazenamento de dados.
 
@@ -38,9 +40,11 @@ Bem-vindo ao Food Explorer API, um projeto desenvolvido no programa Explorer da 
 ``npm isntall``
 2. **Configuração do Banco de Dados:**
 ``npm run migrate``
-3. **Iniciar o Servidor:**
+3. **Iniciar o Servidor de desenvolvimento:**
 ``npm run dev``
-4. **Executar Testes:**
+4. **Iniciar o Servidor:**
+``npm start``
+5. **Executar Testes:**
 ``npm run test``
 
 ## Funcionalidades a serem Adicionadas
